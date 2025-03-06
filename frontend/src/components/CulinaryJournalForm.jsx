@@ -45,7 +45,7 @@ export default function CulinaryJournalForm({ recipeName, recipeId }) {
     formData.append("recipeId", recipeId);
 
     try {
-      const response = await fetch("http://localhost:3000/journal", {
+      const response = await fetch(`${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/journal`, {
         method: "POST",
         body: formData,
         credentials: "include",

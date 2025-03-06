@@ -11,7 +11,7 @@ export default function MyCulinaryJournal() {
     setLoading(true);
     const getJournalHistory = async () => {
       try {
-        const response = await fetch("http://localhost:3000/journal/history", {
+        const response = await fetch(`${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/journal/history`, {
           credentials: "include",
         });
 

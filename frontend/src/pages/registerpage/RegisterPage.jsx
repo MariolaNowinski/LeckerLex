@@ -83,7 +83,7 @@ export default function RegisterPage() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:3000/users/signup", {
+      const response = await fetch(`${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/signup`, {
         method: "POST",
         body: JSON.stringify({ name, email, password }),
         headers: {

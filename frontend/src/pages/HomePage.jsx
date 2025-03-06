@@ -13,7 +13,7 @@ export default function HomePage() {
 
     const registerGuestVisit = async () => {
       try {
-        const response = await fetch("http://localhost:3000/guests/add-visit", {
+        const response = await fetch(`${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/guests/add-visit`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export default function HomePage() {
 
     const fetchGuestCount = async () => {
       try {
-        const response = await fetch("http://localhost:3000/guests/count", {
+        const response = await fetch(`${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/guests/count`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -133,7 +133,7 @@ export default function HomePage() {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/search/recipes?ingredients=${ingredientQuery}`, // TODO pfad mit .env variable ersetzen
+        `${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/search/recipes?ingredients=${ingredientQuery}`, // TODO pfad mit .env variable ersetzen
         {
           credentials: "include", // include cors credentials
         }

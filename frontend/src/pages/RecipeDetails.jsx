@@ -90,7 +90,7 @@ function RecipeDetails() {
           item.name.trim().toLowerCase()
         );
         const response = await fetch(
-          "http://localhost:3000/users/update-shoppinglist",
+          `${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/update-shoppinglist`,
           {
             method: "PATCH",
             body: JSON.stringify({

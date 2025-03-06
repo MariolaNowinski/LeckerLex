@@ -11,7 +11,7 @@ export default function AuthContextProvider({ children }) {
   const checkLoginStatus = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3000/users/verify-user`, {
+      const response = await fetch(`${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/verify-user`, {
         credentials: "include",
       }); // TODO: route with .env replace
 
