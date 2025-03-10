@@ -31,9 +31,11 @@ function Navbar() {
     };
   }, [dropdownRef]);
 
+  const isUploaded = import.meta.env.VITE_API_UPLOADED === "true";
+
   const handleLogout = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/logout`, {
+      const response = await fetch(`${isUploaded ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/logout`, {
         method: "POST",
         credentials: "include",
       });

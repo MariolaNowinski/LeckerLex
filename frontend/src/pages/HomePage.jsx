@@ -8,12 +8,14 @@ import Sidebar from "../components/Sidebar";
 
 export default function HomePage() {
   const [guestCount, setGuestCount] = useState(0);
+  const isUploaded = import.meta.env.VITE_API_UPLOADED === "true";
   useEffect(() => {
     // Funktion zum Registrieren des Gastbesuchs
 
+
     const registerGuestVisit = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/guests/add-visit`, {
+        const response = await fetch(`${isUploaded ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/guests/add-visit`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -35,9 +37,11 @@ export default function HomePage() {
 
     // Funktion, um die Anzahl der Gäste abzurufen
 
+    
+
     const fetchGuestCount = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/guests/count`, {
+        const response = await fetch(`${isUploaded ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/guests/count`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -133,7 +137,7 @@ export default function HomePage() {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/search/recipes?ingredients=${ingredientQuery}`, // TODO pfad mit .env variable ersetzen
+        `${isUploaded ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/search/recipes?ingredients=${ingredientQuery}`, // TODO pfad mit .env variable ersetzen
         {
           credentials: "include", // include cors credentials
         }

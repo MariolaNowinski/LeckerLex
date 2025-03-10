@@ -12,14 +12,18 @@ function MyShoppingList() {
   const [purchasedItems, setPurchasedItems] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
   const [notification, setNotification] = useState("");
+  
+  const isUploaded = import.meta.env.VITE_API_UPLOADED === "true";
 
   // Fetch shopping list on mount
   useEffect(() => {
     const getShoppingList = async () => {
       setLoading(true);
+
+
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/shoppinglist`,
+          `${isUploaded ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/shoppinglist`,
           {
             credentials: "include",
           }
@@ -45,7 +49,7 @@ function MyShoppingList() {
   const saveShoppingList = async (updatedList) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/update-shoppinglist`,
+        `${isUploaded ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/update-shoppinglist`,
         {
           method: "PATCH",
           headers: {

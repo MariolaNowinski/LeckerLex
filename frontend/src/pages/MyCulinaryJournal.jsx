@@ -9,9 +9,12 @@ export default function MyCulinaryJournal() {
   // get request on mount (empty dependency array)
   useEffect(() => {
     setLoading(true);
+
+    const isUploaded = import.meta.env.VITE_API_UPLOADED === "true";
+
     const getJournalHistory = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/journal/history`, {
+        const response = await fetch(`${isUploaded ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/journal/history`, {
           credentials: "include",
         });
 

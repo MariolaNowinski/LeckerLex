@@ -58,8 +58,10 @@ export default function LoginComponent() {
 
     setErrorMessage(""); // clean previous errors
 
+    const isUploaded = import.meta.env.VITE_API_UPLOADED === "true";
+
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/login`, {
+      const response = await fetch(`${isUploaded ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/login`, {
         // TODO: use env variables for route
         method: "POST",
         body: JSON.stringify({ email, password }),

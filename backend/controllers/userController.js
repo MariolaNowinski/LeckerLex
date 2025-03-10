@@ -27,6 +27,8 @@ export const registerUser = async (req, res, next) => {
     newUser.validationToken = token; // Store validation token in user's validationToken field
     await newUser.save();
 
+    const isUploaded = process.env.UPLOADED === "true" ? process.env.FRONTEND_RENDER_URL : process.env.FRONTEND_BASE_URL;
+
     // Set up email options
     // TODO adapt to our new app name
     const mailOptions = {
@@ -43,7 +45,7 @@ export const registerUser = async (req, res, next) => {
         </p>
         <div style="text-align: center; margin: 20px 0;">
           <a 
-            href="${process.env.FRONTEND_BASE_URL}/home/email-verify/${token}" 
+            href="${isUploaded}/home/email-verify/${token}" 
             style="background-color: #4CAF50; color: white; text-decoration: none; padding: 10px 20px; font-size: 16px; border-radius: 5px;"
           > 
             Verify Email
@@ -54,9 +56,9 @@ export const registerUser = async (req, res, next) => {
         </p>
         <p style="font-size: 16px; color: #555; word-wrap: break-word;">
           <a href="${
-            process.env.FRONTEND_BASE_URL
+            isUploaded
           }/home/email-verify/${token}"  style="color: #4CAF50;">${
-        process.env.FRONTEND_BASE_URL
+        isUploaded
       }/home/email-verify/${token}</a>
         </p>
         <p style="font-size: 14px; color: #999; text-align: center; margin-top: 30px;">
@@ -70,7 +72,7 @@ export const registerUser = async (req, res, next) => {
       text: `
       Welcome to LeckerLex, ${newUser.name}!
       Thank you for registering. Please verify your email address by clicking the link below:
-      ${process.env.FRONTEND_BASE_URL}/home/email-verify/${token}
+      ${isUploaded}/home/email-verify/${token}
       
       If you didn't sign up for LeckerLex, please ignore this email.
   

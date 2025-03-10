@@ -12,13 +12,15 @@ export default function EmailVerifyTokenPage() {
   useEffect(() => {
     let timer;
 
+    const isUploaded = import.meta.env.VITE_API_UPLOADED === "true";
+
     const verifyEmail = async () => {
       try {
         setLoading(true);
         setMessage(""); // clear any previous message
 
         const response = await fetch(
-          `${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/verify-email/${token}`, // TODO: replace path with .env variable
+          `${isUploaded ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/verify-email/${token}`, // TODO: replace path with .env variable
           { credentials: "include" }
         );
 

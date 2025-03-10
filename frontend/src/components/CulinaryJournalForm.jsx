@@ -44,8 +44,10 @@ export default function CulinaryJournalForm({ recipeName, recipeId }) {
     formData.append("recipeName", recipeName);
     formData.append("recipeId", recipeId);
 
+    const isUploaded = import.meta.env.VITE_API_UPLOADED === "true";
+
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/journal`, {
+      const response = await fetch(`${isUploaded ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/journal`, {
         method: "POST",
         body: formData,
         credentials: "include",

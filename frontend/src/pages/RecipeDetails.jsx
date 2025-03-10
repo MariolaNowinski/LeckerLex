@@ -79,6 +79,8 @@ function RecipeDetails() {
     }
   };
 
+  const isUploaded = import.meta.env.VITE_API_UPLOADED === "true";
+
   // Add missing ingredients to the shopping list.
   const handleAddToShoppingList = async () => {
     try {
@@ -90,7 +92,7 @@ function RecipeDetails() {
           item.name.trim().toLowerCase()
         );
         const response = await fetch(
-          `${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/update-shoppinglist`,
+          `${isUploaded ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/update-shoppinglist`,
           {
             method: "PATCH",
             body: JSON.stringify({

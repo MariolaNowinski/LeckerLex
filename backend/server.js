@@ -13,7 +13,9 @@ const PORT = process.env.PORT;
 
 const app = express();
 
-app.use(cors({ credentials: true, origin: `${process.env.FRONTEND_BASE_URL}` })); // TODO mit .env variable ersetzen
+
+
+app.use(cors({ credentials: true, origin: [process.env.FRONTEND_BASE_URL, process.env.BACKEND_RENDER_URL]})); 
 
 app.use(cookieParser());
 app.use(express.json());

@@ -82,8 +82,16 @@ export default function RegisterPage() {
     setErrorMessage(""); // Clear previous errors
     setIsSubmitting(true);
 
+    console.log("VITE_API_UPLOADED:", typeof import.meta.env.VITE_API_UPLOADED);
+    console.log("API URL:", import.meta.env.VITE_API_URL);
+    console.log("BASE_URL:", import.meta.env.VITE_API_BASE_URL );
+
+    const isUploaded = import.meta.env.VITE_API_UPLOADED === "true";
+
+    console.log(isUploaded);
+
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_UPLOADED ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/signup`, {
+      const response = await fetch(`${isUploaded ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/signup`, {
         method: "POST",
         body: JSON.stringify({ name, email, password }),
         headers: {
