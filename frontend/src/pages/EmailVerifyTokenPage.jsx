@@ -8,7 +8,7 @@ export default function EmailVerifyTokenPage() {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  
+
   const isUploaded = import.meta.env.VITE_API_UPLOADED === "true";
 
   useEffect(() => {
@@ -24,6 +24,7 @@ export default function EmailVerifyTokenPage() {
           `${isUploaded ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_BASE_URL}/users/verify-email/${token}`, // TODO: replace path with .env variable
           { credentials: "include" }
         );
+        console.log("Response to verify-email:", response);
 
         if (response.status === 200) {
           setMessage(
