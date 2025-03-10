@@ -8,11 +8,12 @@ export default function EmailVerifyTokenPage() {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  
+  const isUploaded = import.meta.env.VITE_API_UPLOADED === "true";
 
   useEffect(() => {
     let timer;
 
-    const isUploaded = import.meta.env.VITE_API_UPLOADED === "true";
 
     const verifyEmail = async () => {
       try {
