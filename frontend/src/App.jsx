@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, HashRouter } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import RecipeContextProvider from "./context/RecipeContext";
 import LandingPage from "./pages/landingpage/LandingPage";
@@ -22,7 +22,7 @@ function App() {
   return (
     <AuthContextProvider>
       <RecipeContextProvider>
-        <HashRouter>
+        <Router>
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/home" element={<Layout />}>
@@ -65,7 +65,7 @@ function App() {
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </HashRouter>
+        </Router>
       </RecipeContextProvider>
     </AuthContextProvider>
   );
